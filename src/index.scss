@@ -1,0 +1,385 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+
+@mixin desktop(){
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: inherit;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  text-decoration: none;
+  font-family: 'Karla', sans-serif;
+  // font-family: 'DM Serif Display', serif;
+}
+
+img{
+  display: block;
+}
+
+button{
+  cursor: pointer;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  padding: 0 24px 64px 24px;
+
+  @include desktop{
+    margin: 0 auto;
+    max-width: 1440px;
+  }
+}
+
+h1,h3{
+  font-family: 'DM Serif Display', serif;
+}
+
+.btn{
+  display: inline-block;
+  border: 2px solid var(--backgroundMain);
+  color: var(--backgroundMain);
+  padding: 8px 16px;
+
+  &:hover, &:active{
+    color: var(--textSecond);
+  }
+}
+
+.border{
+  border-bottom: 1px solid var(--textThird);
+}
+
+#root{
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--backgroundMain);
+  
+  --backgroundSecond: hsl(256, 26%, 20%);
+  --textThird: hsl(216, 30%, 68%);
+  --textMain: hsl(270, 9%, 17%);
+  --textSecond: hsl(273, 4%, 51%);
+  --backgroundMain: hsl(0, 0%, 98%);
+}
+
+nav{
+  height: 80px;
+  position: relative;
+
+  div{
+    width: 100%;
+    position: relative;
+    padding: 24px;
+    display: flex;
+    background-color: var(--backgroundMain);
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 0px 24px 0px rgba(66, 68, 90, 0.2);
+    z-index: 2;
+    height: 80px;
+  }
+
+  .logo{
+    height: 20px;
+  }
+
+  menu{
+    position: fixed;
+    top: -100vh;
+    background-color: var(--textMain);
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    padding: 124px 24px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+    transition: transform 1s;
+    background-image: url('/bg-pattern-mobile-nav.svg');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 100% auto;
+
+    a{
+      text-align: center;
+      color: white;
+      font-size: 20px;
+      font-weight: 700;
+      padding: 16px;
+
+      &:last-child{
+        border: 2px solid var(--backgroundMain);
+      }
+
+      &:hover,&:active{
+        color: var(--textSecond)
+      }
+    }
+  }
+
+  @include desktop{
+    position: static;
+    display: flex;
+    flex-direction: row;
+
+    div{
+      position: static;
+      box-shadow: none;
+      height: 100%;
+    }
+
+    button{
+      display: none;
+    }
+
+    menu{
+      position: static;
+      flex-direction: row;
+      width: auto;
+      height: auto;
+      padding: 0;
+      background: inherit;
+      column-gap: 24px;
+      align-items: center;
+
+      a{
+        color: var(--textMain);
+        font-size: 16px;
+        padding: 8px;
+        width: max-content;
+        &:last-child{
+          border-color: var(--textMain);
+          margin-right: 24px;
+        }
+      }
+    }
+  }
+}
+
+.nav-open{
+  div{
+    position: fixed;
+  }
+  menu{
+    transform: translateY(calc(100vh));
+  }
+   @include desktop{
+      div{
+        position: relative;
+      }
+      menu{
+        transform: none;
+      }
+   }
+}
+
+footer{
+  padding: 48px;
+  background-image: url('/bg-pattern-footer-mobile.svg');
+  background-repeat: no-repeat;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--textThird);
+  background-color: rgba(240, 235, 235, 0.5);
+
+  div{
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+    align-items: center;
+    padding: 24px;
+  }
+
+  .row-1{
+    div{
+      flex-direction: row;
+      column-gap: 24px;
+    }
+  }
+
+  .footer-box{
+    p{
+      font-size: 20px;
+    }
+    a{
+      color: var(--textMain);
+
+      &:hover, &:active{
+        color: var(--textSecond)
+      }
+    }
+  }
+
+  @include desktop{
+    background-image: url('/bg-pattern-footer-desktop.svg');
+
+    .row-2,.row-1{
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+    .row-1{
+      justify-content: space-between;
+    }
+  }
+}
+
+.row-1{
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+
+  .image{
+    width: 100%;
+    img{
+      width: 100%;
+    }
+  }
+
+  .info{
+    padding: 48px 24px 180px 24px;
+    background: linear-gradient(0deg, var(--backgroundMain) 25%, var(--backgroundSecond) 25%);
+    text-align: center;
+    position: relative;
+
+    h1{
+      color: var(--backgroundMain);
+      font-weight: 400;
+    }
+  
+    p{
+      margin: 16px 0;
+      color: var(--backgroundMain);
+      font-weight: 400;
+    }
+  }
+
+  .img-left{
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .img-right{
+    position: absolute;
+    right: 0;
+    bottom: -10%;
+  }
+
+  @include desktop{
+    margin: 0 auto;
+    max-width: 1440px;
+    display: block;
+
+    .info{
+      position: relative;
+      padding: 64px 24px 320px 24px;
+
+      h1,p,a{
+        max-width: 40%;
+        margin-left: 60px;
+        text-align: left;
+      }
+      a{
+        position: absolute;
+        left: 24px;
+        margin-top: 24px;
+        z-index: 4;
+      }
+    }
+
+    .image{
+      position: absolute;
+      width: 30%;
+      right: 15%;
+      top: 48px;
+    }
+
+    .img-left{
+      left: 0;
+      bottom: -30%;
+    }
+    .img-right{
+      right: 0;
+      top: 0;
+    }
+  }
+}
+
+.row-2{
+  padding: 48px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+
+  .container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+  }
+
+  img{
+    margin: 24px auto;
+  }
+  p{
+    color: var(--textSecond);
+    max-width: 400px;
+    margin: 16px auto;
+  }
+
+  @include desktop{
+    h1{
+      text-align: left;
+    }
+
+    .container{
+      flex-direction: row;
+      column-gap: 24px;
+    }
+  }
+}
+
+.row-2_border{
+  height: 1px;
+  width: 150px;
+  margin: 0 auto;
+  margin-bottom: 24px;
+  background-color: var(--textSecond);
+
+  @include desktop{
+    margin: 0;
+    margin-bottom: 24px;
+  }
+}
+
+.row-3{
+  background-color: var(--backgroundSecond);
+  padding: 48px 24px;
+  text-align: center;
+  background-image: url('/bg-pattern-how-we-work-mobile.svg');
+  background-repeat: no-repeat;
+  background-position: right;
+  margin: 48px 0;
+
+  h1{
+    color: var(--backgroundMain);
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+
+  @include desktop{
+    text-align: left;
+    background-image: url('/bg-pattern-how-we-work-desktop.svg');
+  }
+}
